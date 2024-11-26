@@ -12,6 +12,7 @@
             style="color: yellow; margin: 10px"
             v-for="(per, index) in personajes"
             :key="index"
+            @click="verDetalles(per)"
         >
             {{ per.name }}
         </div>
@@ -26,37 +27,44 @@ import axios from "axios";
 
 export default {
     name: "PersonajesList",
-    components: {},
-    data: function () {
+    data() {
         return {
-        personajes: [],
-        page: 1,
-        pages: 1,
+            personajes: [],
+            page: 1,
+            pages: 1,
         };
     },
     methods: {
         getPersonajes() {
-        const params = {
-            page: this.page,
-        };
-        axios.get("https://swapi.dev/api/people/", { params }).then((resp) => {
-            this.personajes = resp.data.results;
-            this.pages = resp.data.next;
-        });
+            const params = {
+                page: this.page,
+            };
+            axios.get("https://swapi.dev/api/people/", { params }).then((resp) => {
+                this.personajes = resp.data.results;
+                this.pages = resp.data.next;
+            });
         },
         cambiarPagina(page) {
-        this.page = page <= 0 || page > this.pages ? this.page : page;
-        this.getPersonajes();
+            this.page = page <= 0 || page > this.pages ? this.page : page;
+            this.getPersonajes();
         },
-
+        verDetalles(personaje) {
+            // Navegar a la vista de detalles y pasar el id del personaje
+            console.log(personaje); 
+            const personajeId = personaje.url.split('/')[5]; // Extraer el id de la URL
+            this.$router.push({ 
+            name: 'Personaje', 
+            params: { personajeId: personajeId } 
+            });
+        },
         home() {
-        this.$router.push("/");
+            this.$router.push("/");
         },
     },
     created() {
         this.getPersonajes();
     },
-    };
+};
 </script>
 
 <style>

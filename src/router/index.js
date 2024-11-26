@@ -10,8 +10,8 @@ import Contacto from '../views/ContactoForm.vue';
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
-    { path: '/personaje', name: 'Personaje', component: Personaje },
     { path: '/personajes', name: 'Personajes', component: Personajes }, // Corrige la ruta aquí si es necesario
+    { path: '/personaje/:personajeId', name: 'Personaje', component: Personaje },
     { path: '/contacto', name: 'Contacto', component: Contacto }
 ];
 
