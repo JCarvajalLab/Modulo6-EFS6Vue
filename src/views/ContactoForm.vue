@@ -57,6 +57,8 @@ export default {
     .container {
     border-radius: 5px;  
     padding: 20px;
+    width: 400px; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto; /* Esto centra el contenedor en la pantalla */
     }
     .titulos{
         padding: 20px;

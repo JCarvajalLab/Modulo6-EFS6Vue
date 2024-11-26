@@ -1,85 +1,100 @@
-<template>
-  <div class="container">
-    <h1 class="titulo">Personajes </h1>
-    <div> 
-     <button v-on:click="cambiarPagina(page +1)"
-     >Buscar más personajes</button>
+<template> 
+<div></div>      
+        <!-- <div class="container">
 
-</div>
-      <div class="row align-self-center">
-        <div class="col tabla col-3 align-self-center" style="color: yellow; margin: 10px;"
-          v-for="(per, index) in personajes" :key="index">
-          {{ per.name }}
-        </div>
-      </div>
+      
+         <table>
+            <tr>              
+                <th>Nombre</th>              
+            </tr>
+              <tr>                
+                <td>{{ personaje.name }}</td>                
+            </tr>
+             <tr>                
+                <td>Género</td>                  
+            </tr>          
+            <tr>            
+                <td>{{ personaje.gender }}</td>             
+            </tr>
+            <tr>            
+                <td>Altura</td>             
+            </tr>
+            <tr>              
+                <td>{{ personaje.height }}</td>              
+            </tr>
+            <tr>            
+                <td>Número de películas</td>             
+            </tr>
 
+             <tr>              
+                <td > {{personaje.films.length}}  </td>              
+            </tr>
 
-    <button @click="home">Home</button>
+               </table>
+          </div>  -->
 
-  </div>
+ 
 </template>
 
 <script>
-import axios from 'axios';
-
+/*
+import axios from 'axios'
 export default {
-  name: 'PersonajesList',
-  components: {
-   
-  },
-  data: function () {
-    return {
-      personajes: [],
-      page:1,
-      pages:1
-    }
-  },
-  methods: {
-    getPersonajes() {
-      const params = {
-        page: this.page
-      }
-      axios.get("https://swapi.dev/api/people/", {params}).then((resp) => {
-        this.personajes = resp.data.results
-                 this.pages = resp.data.next
+    name: 'PersonajePrincipal',
+    data() {
+        return {
+            personaje: '',
+
+        }
+    },
+    computed: {
+        id() {
+            return this.$route.params.id
+        }
+    },
+    methods: {
+        fetchPersonajes() {
+            axios.get(`https://swapi.dev/api/people/${this.id}`)
+                .then(res => {
+                    this.personaje = res.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
       
-      })
-    },
-    cambiarPagina(page){
-      this.page = (page <= 0 || page > this.pages) ? this.page : page
-      this.getPersonajes()
-
     },
 
-    home() {
-      this.$router.push('/')
-
+  
+    created() {
+        this.fetchPersonajes()
     }
-  },
-  created() {
-    this.getPersonajes()
-  }
-
 }
+*/
 </script>
 
 <style>
-.titulo {
-  color: yellow;
-  text-align: center;
-  padding: 40px;
-}
-
-
-.tabla {
-  border: 1px solid white;
+/*
+table {
   border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
+margin: 80px;
+  width: 50%;
+  border: 1px solid rgb(190, 189, 189);
+  color: yellow;
+background-color: rgb(121, 117, 117);
+
 }
 
-.tabla.center {
-  margin-left: auto;
-  margin-right: auto;
+th, td {
+  text-align: center;
+  padding: 16px;
+
 }
+
+tr:nth-child(even) {
+  background-color: #080808;
+  color: white;
+}
+*/
 </style>
